@@ -403,3 +403,9 @@ if command -v ccp &> /dev/null; then
 else
   alias claude="claude --thinking-display summarized"
 fi
+
+# >>> omp profile alias: omp-triadmakers >>>
+omp-triadmakers() {
+    command omp --profile=triadmakers "$@"
+}
+# <<< omp profile alias: omp-triadmakers <<<
