@@ -201,7 +201,7 @@
       "Bash(lark-cli:*)",
       "Bash(art-put:*)"
     ],
-    "defaultMode": "auto",
+    "defaultMode": "bypassPermissions",
     "deny": []
   },
   "plansDirectory": ".claude/plans",
