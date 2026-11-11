@@ -62,6 +62,8 @@ The hook is a ccp hub item, so `ccp bootstrap` keeps its link and every machine 
 
 A core started by the Herdr app has no `XDG_RUNTIME_DIR`, so its socket is `~/.local/state/herdr-core/default/default.sock`. `home/.zshrc` exports `XDG_RUNTIME_DIR`, which would point `hc` at `~/.local/run`, so on macOS it also sets `HC_SOCKET` to the state path. Inside a Herdr terminal it uses `HC_TERMINAL_SOCKET` instead, because `hc` reads only `HC_SOCKET`. It skips private sessions, which set `HC_SESSION`. Terminals opened before a change here need a new tab.
 
+Never start the app with `open -a Herdr` from a shell or an agent: `open` hands the caller's environment to the app, and its core then passes it to every terminal. From a Claude Code session that means `CLAUDE_CODE_CHILD_SESSION`, so every resumed Claude starts with transcript saving off (seen 2026-11-11), and the core listens under `~/.local/run`. Open it from Finder or the Dock, or with `env -i HOME="$HOME" USER="$USER" PATH=/usr/bin:/bin open -a Herdr`.
+
 # Agent messaging
 
 `agent-ops` (formerly `agent-msg`) drives Herdr terminals through termctl's `hc` backend. `spawn` needs a running core, so a core never starts with an agent's environment. A spawned agent opens as a tab in the caller's space, or in its folder's space when started from outside Herdr. Long jobs on `homebox` stay in tmux.
