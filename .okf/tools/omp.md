@@ -5,7 +5,7 @@ description: "Which parts of ~/.omp/agent live in this repository, which ccp wri
 resource: https://github.com/samhvw8/dotfiles/tree/main/home/.omp/agent
 tags: [omp, ccp, agents, hooks]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T09:00:00Z }
+generated: { by: claude-code/claude-opus-5-5, at: 2026-11-15T10:40:00Z }
 sources:
   - id: omp-dir
     resource: https://github.com/samhvw8/dotfiles/tree/main/home/.omp/agent
@@ -28,6 +28,8 @@ sources:
 | Path | Owner |
 |------|-------|
 | `config.yml` | This repository — model roles, presets, subagent model routing (`task.agentModelOverrides`), and `skills.ignoredSkills`[^omp-dir] |
+
+On this fork every active model role in `config.yml` points at `opencode-go/deepseek-*` and there is no `image` role: Google bans Antigravity accounts used through omp, so Gemini work runs in the `agy` CLI instead (rule `hub/rules/harness-models.md`). The `modelPresets` still hold older Antigravity presets; they apply only when selected.
 | `models.yml` | This repository — OpenRouter provider routing and custom provider/model definitions (such as `tokenharbor`)[^omp-dir] |
 | `extensions/codegraph-remind.ts` | This repository — omp port of the Claude Code `codegraph-remind` hook[^omp-dir] |
 | `extensions/cost-remind.ts` | This repository — omp port of the Claude Code `cost-remind` hook[^omp-dir] |
