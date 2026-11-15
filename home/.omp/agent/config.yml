@@ -2,20 +2,19 @@ browser:
   relay: true
 setupVersion: 3
 modelRoles:
-  slow: anthropic/claude-fable-5-2:auto
-  plan: anthropic/claude-fable-5-2:auto
-  advisor: anthropic/claude-fable-5-2:auto
-  task: google-antigravity/gemini-3.8-flash:auto
-  vision: google-antigravity/gemini-3.8-flash:medium
-  tiny: google-antigravity/gemini-3.8-flash:low
-  commit: google-antigravity/gemini-3.8-flash:low
+  slow: opencode-go/deepseek-v4-pro:high
+  plan: opencode-go/deepseek-v4-pro:high
+  advisor: opencode-go/deepseek-v4-pro:high
+  task: opencode-go/deepseek-v4.1-flash:high
+  vision: opencode-go/deepseek-v4.1-flash:medium
+  tiny: opencode-go/deepseek-v4.1-flash:low
+  commit: opencode-go/deepseek-v4.1-flash:low
   web: web/searxng
   judge: typesafe/jev-latest
   dictation: local/parakeet-tdt-0.6b-v3
   speech: local/kokoro
-  image: google-antigravity/gemini-3.1-flash-image
-  default: google-antigravity/gemini-4-argon
-  memory: google-antigravity/gemini-3.8-flash:auto
+  default: opencode-go/deepseek-v4.1-flash
+  memory: opencode-go/deepseek-v4.1-flash
 modelPresets:
   spread:
     modelRoles:
@@ -160,3 +159,5 @@ cycleOrder:
   - slow
   - advisor
 defaultThinkingLevel: auto
+auth:
+  accountPolicies: []
