@@ -93,7 +93,7 @@ tools = { python = "3.11" }
 run = "bash $HOME/.dotfiles/mise/scripts/dot-save.sh"
 
 [tasks."dot:pull"]
-description = "Pull the latest main from origin, rebasing local commits on top"
+description = "Pull the latest main from origin, rebasing local commits on top, then merge upstream main on a fork"
 run = "bash $HOME/.dotfiles/mise/scripts/dot-pull.sh"
 
 [tasks."dot:push"]
