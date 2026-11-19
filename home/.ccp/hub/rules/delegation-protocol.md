@@ -11,12 +11,16 @@ loads guidance for you to follow yourself.
 
 - **At most 6 agents in flight, as a rolling pool.** When one finishes, start the
   next queued job; don't wait for a whole batch.
-- **Subagent by default.** Spawn a named teammate only when you can name the second
+- **A named harness teammate means agent-ops.** When Sam says "agy teammate", "omp
+  teammate" or names a team, start it as a visible harness session with `agent-ops`
+  (`harness-ops task new`), not as a headless print job (`agy -p`). Headless agy also
+  denies every MCP tool.
+- **Subagent by default.** Start a live member only when you can name the second
   message you'll send it (debate, council, multi-round hand-off, a reviewer you'll
-  consult again). In Claude Code, teammates need `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`;
-  in `omp`, pass `name` on `task` items and message peers via `write agent://<id>`
-  (`agent://all` to broadcast). Spawn them in one message, name their counterparts,
-  shut them down when done.
+  consult again). Live members are harness-ops sessions (`agent-ops` skill, "Live
+  team"); in `omp`, pass `name` on `task` items and message peers via
+  `write agent://<id>` (`agent://all` to broadcast). Start them together, send each
+  the roster, close them when done.
 - **Equip the agent.** It doesn't know what's installed. Name its tools — web:
   Parallax MCP (`mcp__claude_ai_Parallax__*` via `ToolSearch` in Claude Code; `parallax call` via the `parallax-cli`
   skill plus `web_search`/`read` in `omp`); code: codegraph MCP; browser: `bsk` CLI via
@@ -31,6 +35,6 @@ loads guidance for you to follow yourself.
   read messages only between long tool calls.
 - **An unexplained kill means stop.** An agent whose job is killed without an
   explanation stops and asks; it never restarts the job on its own.
-- **Research:** read local first (code, config, git history) so queries are precise.
+- **Research:** read local first (code, config, git history) so you know the terms. Still start broad.
   Then search web and GitHub in parallel, say which approach you picked and why, and
   surface conflicts. Skip it for a known-cause bug or a mechanical change.

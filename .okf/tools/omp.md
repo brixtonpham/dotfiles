@@ -28,8 +28,6 @@ sources:
 | Path | Owner |
 |------|-------|
 | `config.yml` | This repository — model roles, presets, subagent model routing (`task.agentModelOverrides`), and `skills.ignoredSkills`[^omp-dir] |
-
-On this fork every active model role in `config.yml` points at `opencode-go/deepseek-*` and there is no `image` role: Google bans Antigravity accounts used through omp, so Gemini work runs in the `agy` CLI instead (rule `hub/rules/harness-models.md`). The `modelPresets` still hold older Antigravity presets; they apply only when selected.
 | `models.yml` | This repository — OpenRouter provider routing and custom provider/model definitions (such as `tokenharbor`)[^omp-dir] |
 | `extensions/codegraph-remind.ts` | This repository — omp port of the Claude Code `codegraph-remind` hook[^omp-dir] |
 | `extensions/cost-remind.ts` | This repository — omp port of the Claude Code `cost-remind` hook[^omp-dir] |
@@ -41,6 +39,8 @@ On this fork every active model role in `config.yml` points at `opencode-go/deep
 | `AGENTS.md`, `RULES.md`, `APPEND_SYSTEM.md`, `skills/`, `agents/` | `ccp` (`ccp omp sync`) — mirrored from the active profile (`default`) |
 | `mcp.json` | Machine-local (holds machine paths and the `artifact-server` bearer token); `setup-claude-mcp.sh` updates `rea` (`rea-agents mcp`, `JAVA_HOME`, `GHIDRA_INSTALL_DIR`) inside it when present[^claude-mcp] |
 | `*.db*`, `sessions/`, `blobs/`, `cache/` | `omp` runtime state — never committed |
+
+On this fork every active model role in `config.yml` points at OpenCode Go (`opencode-go/glm-5.3-flash` by default, `opencode-go/qwen4-max` for `plan` and `slow`; DeepSeek is skipped for its slow first token) and there is no `image` role: Google bans Antigravity accounts used through omp, so Gemini work runs in the `agy` CLI instead (rule `hub/rules/harness-models.md`). The `modelPresets` still hold older Antigravity presets; they apply only when selected.
 
 # New machine
 

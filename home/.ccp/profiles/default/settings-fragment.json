@@ -28,10 +28,38 @@
   },
   "enabledPlugins": {
     "code-modernization@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": null
+    "image-view@claude-image-view": true,
+    "prismantis@samhvw8-prismantis": true,
+    "prompt-rail@oikon48": true
   },
   "env": {
     "MEDIASIFT_ON": "me.ubuntu.home"
+  },
+  "extraKnownMarketplaces": {
+    "claude-image-view": {
+      "source": {
+        "repo": "jarrodwatts/claude-image-view",
+        "source": "github"
+      }
+    },
+    "oikon48": {
+      "source": {
+        "repo": "oikon48/prompt-rail",
+        "source": "github"
+      }
+    },
+    "prismantis": {
+      "source": {
+        "repo": "NahumLitvin/prismantis",
+        "source": "github"
+      }
+    },
+    "samhvw8-prismantis": {
+      "source": {
+        "repo": "samhvw8/prismantis",
+        "source": "github"
+      }
+    }
   },
   "inputNeededNotifEnabled": true,
   "model": "opus[1m]",
@@ -75,7 +103,6 @@
       "WebFetch(domain:*)",
       "WebSearch",
       "Write",
-      "mcp__context7",
       "mcp__claude_ai_Parallax",
       "mcp__codegraph",
       "mcp__lark",
@@ -85,6 +112,18 @@
       "Bash(art-put:*)"
     ],
     "defaultMode": "auto"
+  },
+  "pluginConfigs": {
+    "prismantis@samhvw8-prismantis": {
+      "options": {
+        "theme": "dracula"
+      }
+    },
+    "prompt-rail@oikon48": {
+      "options": {
+        "mode": "vertical"
+      }
+    }
   },
   "promptSuggestionEnabled": false,
   "remoteControlAtStartup": true,

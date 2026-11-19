@@ -37,8 +37,10 @@
   "effortLevel": "xhigh",
   "enabledPlugins": {
     "code-modernization@claude-plugins-official": true,
-    "context7@claude-plugins-official": false,
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "image-view@claude-image-view": true,
+    "prismantis@samhvw8-prismantis": true,
+    "prompt-rail@oikon48": true
   },
   "env": {
     "CLAUDE_CODE_DISABLE_1M_CONTEXT": "0",
@@ -47,6 +49,32 @@
     "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1",
     "ENABLE_EXPERIMENTAL_MCP_CLI": "1",
     "MEDIASIFT_ON": "me.ubuntu.home"
+  },
+  "extraKnownMarketplaces": {
+    "claude-image-view": {
+      "source": {
+        "repo": "jarrodwatts/claude-image-view",
+        "source": "github"
+      }
+    },
+    "oikon48": {
+      "source": {
+        "repo": "oikon48/prompt-rail",
+        "source": "github"
+      }
+    },
+    "prismantis": {
+      "source": {
+        "repo": "NahumLitvin/prismantis",
+        "source": "github"
+      }
+    },
+    "samhvw8-prismantis": {
+      "source": {
+        "repo": "samhvw8/prismantis",
+        "source": "github"
+      }
+    }
   },
   "hooks": {
     "PostToolUse": [
@@ -192,7 +220,6 @@
       "WebFetch(domain:*)",
       "WebSearch",
       "Write",
-      "mcp__context7",
       "mcp__claude_ai_Parallax",
       "mcp__codegraph",
       "mcp__lark",
@@ -205,6 +232,18 @@
     "deny": []
   },
   "plansDirectory": ".claude/plans",
+  "pluginConfigs": {
+    "prismantis@samhvw8-prismantis": {
+      "options": {
+        "theme": "dracula"
+      }
+    },
+    "prompt-rail@oikon48": {
+      "options": {
+        "mode": "vertical"
+      }
+    }
+  },
   "promptSuggestionEnabled": false,
   "remoteControlAtStartup": true,
   "showThinkingSummaries": true,

@@ -389,7 +389,14 @@ if command -v ccp &> /dev/null; then
         return
       fi
     fi
-    CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 command claude --thinking-display summarized --add-dir "${CLAUDE_CONFIG_DIR:-$(ccp which --path 2>/dev/null)}" "$@"
+    # A profile run through CLAUDE_CONFIG_DIR keeps its own .claude.json; give a
+    # new one home-folder trust now instead of at the next full bootstrap.
+    local _cc_state="${CLAUDE_CONFIG_DIR:-}/.claude.json"
+    if [[ -n "${CLAUDE_CONFIG_DIR:-}" && -f "$_cc_state" ]] &&
+       ! jq -e --arg h "$HOME" '.projects[$h].hasTrustDialogAccepted == true' "$_cc_state" &>/dev/null; then
+      bash "$HOME/.dotfiles/mise/scripts/setup-claude-trust.sh" >/dev/null
+    fi
+    command claude --thinking-display summarized "$@"
   }
 
   alias claude-reset='unset _CLAUDE_SUBCMDS _CLAUDE_BIN_MT'
@@ -409,3 +416,4 @@ omp-triadmakers() {
     command omp --profile=triadmakers "$@"
 }
 # <<< omp profile alias: omp-triadmakers <<<
+

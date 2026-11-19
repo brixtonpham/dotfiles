@@ -43,14 +43,14 @@ Rule: **a synthesis built from NOISE is worse than saying "insufficient data."**
 ## Ideas Objective Rubric
 
 The table above serves the decision objective. Under the ideas objective
-([lead-researcher](../../SKILL.md#ideas-objective)), a finding is judged by the idea it
+([lead-researcher](../ideas-objective.md)), a finding is judged by the idea it
 carries, not by whether it is proven. A wrong paper with a good bet stays in.
 
 ```
 GEM:   a reusable move or intent, with at least one of:
        - against consensus, with a diagnosable reason (constraint of its time, wrong field
          or vocabulary, unfashionable, poor execution of a good bet, language community)
-       - an atom from another field that fits a role in Sam's scopes
+       - a brick from another field that fits a role in Sam's scopes
        - the authors' view model or hunch, quoted ("we believe", "surprisingly", a rejected alternative)
        - a constraint that forced a choice and has since lifted
 MEH:   an idea restated without its why, or a known move in a known place
