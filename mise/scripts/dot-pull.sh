@@ -6,7 +6,8 @@
 # pull. On any other branch, main is fast-forwarded without switching to it.
 # On a fork with an `upstream` remote, upstream's main is then merged in (a
 # merge, not a rebase, so commits already on origin keep their hashes and
-# dot:push never needs a force push).
+# dot:push never needs a force push). The origin pull uses --rebase=merges so
+# an unpushed upstream merge is kept, not flattened into replayed commits.
 # =============================================================================
 
 set -euo pipefail
@@ -16,7 +17,7 @@ BRANCH="main"
 
 current="$(git -C "$DOTFILES_DIR" symbolic-ref --short -q HEAD || true)"
 if [ "$current" = "$BRANCH" ]; then
-    git -C "$DOTFILES_DIR" pull --rebase --autostash origin "$BRANCH"
+    git -C "$DOTFILES_DIR" pull --rebase=merges --autostash origin "$BRANCH"
     if git -C "$DOTFILES_DIR" remote get-url upstream >/dev/null 2>&1; then
         git -C "$DOTFILES_DIR" pull --no-rebase --no-edit --autostash upstream "$BRANCH"
     fi

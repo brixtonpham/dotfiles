@@ -40,7 +40,7 @@ Defined in `mise/conf.d/dotfiles.toml`, so they run from any directory.[^conf]
 | Task | Does |
 |------|------|
 | `mise run dot:save` | Runs `dot:check`, `git add -A`, commits with a chezmoi-style message (`Update .zshrc Add …`); never pushes[^save] |
-| `mise run dot:pull` | Pulls `main` from origin. On `main` it rebases local `dot:save` commits on top and autostashes uncommitted edits; on a fork with an `upstream` remote it then merges upstream's `main` (a merge, so commits already on origin keep their hashes and `dot:push` never force-pushes). On any other branch it fast-forwards `main` without switching, and refuses a non-fast-forward[^pull] |
+| `mise run dot:pull` | Pulls `main` from origin. On `main` it rebases local `dot:save` commits on top (`--rebase=merges`, so an unpushed upstream merge survives) and autostashes uncommitted edits; on a fork with an `upstream` remote it then merges upstream's `main` (a merge, so commits already on origin keep their hashes and `dot:push` never force-pushes). On any other branch it fast-forwards `main` without switching, and refuses a non-fast-forward[^pull] |
 | `mise run dot:push` | Runs `dot:check` and `dot:pull`, lists the commits not yet on origin, then pushes `main`. Uncommitted edits stay local; it says so and points at `dot:save`[^push] |
 | `mise run dot:cd` | Starts `$SHELL` in `~/.dotfiles`; `exit` returns to the previous shell. A task runs in a child process and cannot change the calling shell's directory, so it opens a nested shell instead[^conf] |
 | `mise run dot:add <path>…` | Moves each path from `~` into `home/`, `git add`s it, runs `mise dot apply`, then `dot:check`[^add] |

@@ -1,6 +1,7 @@
 # Update Log
 
 ## 2026-11-19
+* **Fix**: `dot:pull` rebases on origin with `--rebase=merges`. A plain `--rebase` flattened an unpushed `upstream/main` merge into 60 replayed commits, which conflicted in `.okf/log.md` and stopped `dot:push`. [Dotfile tasks](/tools/dot-tasks.md) updated. Runs: nothing new.
 * **Update**: Merged `upstream/main` (samhvw8) into the fork. omp model roles follow upstream (GLM-5.3-Flash, Qwen4-Max; DeepSeek skipped), so hub rule `harness-models.md` now says omp runs OpenCode Go models only and never `google-antigravity/*`; Gemini and Antigravity work still goes to the `agy` CLI. [omp configuration](/tools/omp.md) updated. Runs: nothing new.
 * **Update**: the six idea skills (`idea-bank`, `idea-mine`, `idea-forge`, `idea-scout`, `co-read`, `idea-present`) are no longer hand-made hub items. They now come from the public source `samhvw8/thinking-skills` (commit 807e302, installed with `ccp install`), depersonalized: "the owner" instead of Sam, and facts about him in the bank's `me/profile.md`. `IDEA_HOME` is set in `~/.config/mise/config.local.toml`. Chosen after blind evals of five richer variants (registry of cut kinds, method bricks, re-cut rules, lens on every operation): none beat this simpler version; data in `~/workspace/tools/idea-evals`. Runs: nothing new; one more installed source item set.
 
