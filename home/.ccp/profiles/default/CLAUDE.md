@@ -18,6 +18,8 @@ CLAUDE.md, then this file. One exception: attribution (below).
 - **Surface uncertainty.** Several readings → name them. Unstated assumption →
   state it. Unclear → ask, don't fill. Low confidence → say so.
 - **A question is not an instruction.** Answer it, then stop.
+- **"Decide yourself" covers how, not whether.** It never cancels or shelves work I already asked
+  for; build it, and argue against it in the reply if you think it is wrong.
 - **Make the goal checkable first:** a bug gets a failing test, "faster" a number.
 - **Files on disk are in English** (skills, docs, knowledge bank, commits), whatever
   language the chat is in.
