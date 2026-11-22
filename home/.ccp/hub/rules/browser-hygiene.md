@@ -11,6 +11,10 @@ This Mac crashes when free RAM runs out, and many sessions share it.
     job on the home box.
   - Under 20% free: close your idle browsers, servers and renders now, and shrink
     your agent pool.
+- **Disk feeds swap.** The "free percentage" stays high while swap is full, and swap can't grow on a full
+  disk: macOS then kills apps (Chrome first). Before heavy work, also check `df -h /` (at least 30 GB
+  available) and `sysctl vm.swapusage`. Under 30 GB: start nothing heavy, and write renders, clones and
+  worktrees only after you free space. Remove your own worktrees, render outputs and scratch files when done.
 - **Close what you open, as soon as you're done** — not at the end of the session:
   - `bsk`: `bsk tab close` the tabs you opened, then `bsk session stop <your-id>`
     (never `--all`).
