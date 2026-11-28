@@ -1,5 +1,8 @@
 # Update Log
 
+## 2026-11-28
+* **Creation**: [Space names (yabai + SketchyBar)](/tools/spaces.md). yabai (`github:asmvik/yabai`, layout float) holds Space labels; `~/.local/bin/space-name` stores names by Space UUID; SketchyBar (`brew:felixkratz/formulae/sketchybar`) shows them with front app, free RAM and time in a bottom bar. Both run as mise LaunchAgents. Runs: two LaunchAgents (yabai, sketchybar); SketchyBar polls `memory_pressure` every 15 s.
+
 ## 2026-11-19
 * **Fix**: `dot:pull` rebases on origin with `--rebase=merges`. A plain `--rebase` flattened an unpushed `upstream/main` merge into 60 replayed commits, which conflicted in `.okf/log.md` and stopped `dot:push`. [Dotfile tasks](/tools/dot-tasks.md) updated. Runs: nothing new.
 * **Update**: Merged `upstream/main` (samhvw8) into the fork. omp model roles follow upstream (GLM-5.3-Flash, Qwen4-Max; DeepSeek skipped), so hub rule `harness-models.md` now says omp runs OpenCode Go models only and never `google-antigravity/*`; Gemini and Antigravity work still goes to the `agy` CLI. [omp configuration](/tools/omp.md) updated. Runs: nothing new.

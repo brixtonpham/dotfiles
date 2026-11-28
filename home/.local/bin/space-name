@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# space-name: give macOS Spaces (desktops) names that survive restarts.
+#
+#   space-name NAME     name the focused Space
+#   space-name -d       remove the focused Space's name
+#   space-name          list every Space with its name
+#   space-name --apply  re-apply stored names (run by yabairc and yabai signals)
+#
+# Names are stored by Space UUID, not by index, so moving or adding desktops
+# does not shift them. yabai holds the label; SketchyBar shows it. Mission
+# Control itself still says "Desktop N": macOS has no API to change that.
+set -euo pipefail
+
+store="${XDG_STATE_HOME:-$HOME/.local/state}/space-name/names.tsv"
+mkdir -p "$(dirname "$store")"
+touch "$store"
+
+die() { echo "space-name: $*" >&2; exit 1; }
+command -v yabai >/dev/null || die "yabai is not on PATH"
+command -v jq >/dev/null || die "jq is not on PATH"
+
+notify_bar() { command -v sketchybar >/dev/null && sketchybar --trigger space_label_change >/dev/null 2>&1 || true; }
+
+# Writes the store without the given UUID and without the given name.
+drop() {
+  local uuid="$1" name="${2:-}" tmp
+  tmp="$(mktemp "$store.XXXXXX")"
+  awk -F'\t' -v u="$uuid" -v n="$name" '$1 != u && (n == "" || $2 != n)' "$store" >"$tmp"
+  mv "$tmp" "$store"
+}
+
+apply() {
+  local spaces uuid idx label name
+  spaces="$(yabai -m query --spaces)" || die "yabai is not running"
+  while IFS=$'\t' read -r idx uuid label; do
+    name="$(awk -F'\t' -v u="$uuid" '$1 == u { print $2; exit }' "$store")"
+    if [[ "$name" != "$label" ]]; then
+      yabai -m space "$idx" --label "$name" || echo "space-name: could not label Space $idx" >&2
+    fi
+  done < <(jq -r '.[] | [.index, .uuid, .label] | @tsv' <<<"$spaces")
+  notify_bar
+}
+
+case "${1:-}" in
+  "")
+    yabai -m query --spaces | jq -r '.[] | "\(.index)\t\(if .label == "" then "-" else .label end)\t\(if ."is-native-fullscreen" then "fullscreen" else "desktop" end)\t\(if ."has-focus" then "*" else "" end)"' | column -t -s $'\t'
+    ;;
+  --apply) apply ;;
+  -d|--delete)
+    uuid="$(yabai -m query --spaces --space | jq -r .uuid)"
+    drop "$uuid"
+    yabai -m space --label ""
+    notify_bar
+    ;;
+  -h|--help) sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//' ;;
+  -*) die "unknown option $1 (see --help)" ;;
+  *)
+    name="$*"
+    [[ "$name" =~ ^[0-9]+$ ]] && die "a name cannot be only digits: yabai reads it as an index"
+    case "$name" in prev|next|first|last|recent|mouse) die "'$name' is a yabai keyword" ;; esac
+    [[ "$name" == *$'\t'* ]] && die "a name cannot contain a tab"
+    uuid="$(yabai -m query --spaces --space | jq -r .uuid)"
+    [[ -n "$uuid" && "$uuid" != null ]] || die "the focused Space has no UUID"
+    drop "$uuid" "$name"
+    printf '%s\t%s\n' "$uuid" "$name" >>"$store"
+    apply
+    ;;
+esac

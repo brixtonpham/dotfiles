@@ -8,4 +8,5 @@
 * [it2 (iTerm2 CLI)](it2.md) - The pinned it2 CLI for sending text to and reading from iTerm2 sessions, how mise installs it, and how to bump the pin safely.
 * [ccline (Claude Code status line)](ccline.md) - The pinned ccline status line with quota pace bars: mise install, config under ~/.config/ccline, risk review, and how to bump the pin.
 * [Parallax CLI](parallax.md) - How omp and agy reach Parallax through the parallax binary instead of an MCP server, how mise installs it from dl.3cxo.work, and how to share it with a px_ key.
+* [Space names (yabai + SketchyBar)](spaces.md) - How macOS Spaces get names: yabai labels, the space-name script keyed by Space UUID, a SketchyBar bottom bar, launchd agents and the Accessibility step.
 * [Herdr](herdr.md) - The herdr TUI, the Herdr desktop app and herdr-core: what each one is, how each is installed here, and how Claude Code and omp report status.

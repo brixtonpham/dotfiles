@@ -67,6 +67,7 @@ adopt = true
 "brew-cask:font-jetbrains-mono" = { os = "macos" }
 "brew-cask:spotify" = { os = "macos" }
 "brew-cask:visual-studio-code" = { os = "macos" }
+"brew:felixkratz/formulae/sketchybar" = { os = "macos" }  # space-name bar; started by the launchd agent in config.toml
 "apt:tmux" = "latest"
 "apt:vim" = "latest"
 "apt:git" = "latest"
