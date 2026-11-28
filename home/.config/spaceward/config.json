@@ -1,0 +1,19 @@
+{
+  "ram": { "show": true, "warn": 30, "critical": 20 },
+  "bindings": [
+    { "key": "hyper+left",   "action": "grid", "grid": "1:2:0:0:1:1" },
+    { "key": "hyper+right",  "action": "grid", "grid": "1:2:1:0:1:1" },
+    { "key": "hyper+up",     "action": "grid", "grid": "2:1:0:0:1:1" },
+    { "key": "hyper+down",   "action": "grid", "grid": "2:1:0:1:1:1" },
+    { "key": "hyper+return", "action": "grid", "grid": "1:1:0:0:1:1" },
+    { "key": "hyper+c",      "action": "grid", "grid": "6:6:1:1:4:4" },
+    { "key": "hyper+u",      "action": "grid", "grid": "2:2:0:0:1:1" },
+    { "key": "hyper+i",      "action": "grid", "grid": "2:2:1:0:1:1" },
+    { "key": "hyper+j",      "action": "grid", "grid": "2:2:0:1:1:1" },
+    { "key": "hyper+k",      "action": "grid", "grid": "2:2:1:1:1:1" },
+    { "key": "hyper+n",      "action": "rename" },
+    { "key": "hyper+t",      "action": "open", "app": "Ghostty" },
+    { "key": "hyper+b",      "action": "open", "app": "Brave Browser" },
+    { "key": "hyper+h",      "action": "open", "app": "Herdr" }
+  ]
+}

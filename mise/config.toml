@@ -86,8 +86,7 @@ herdr = "latest"
 "npm:@elevenlabs/cli" = "1.9.0"
 "npm:firebase-tools" = "latest"
 dotnet = "10"
-"github:asmvik/yabai" = { version = "latest", os = ["macos"] }  # Space labels and window grid; see .okf/tools/spaces.md
-"github:jackielii/skhd.zig" = { version = "latest", os = ["macos"], strip_components = 0 }  # hotkeys (Hyper key); skhd itself has had no release since 2023
+"github:brixtonpham/spaceward" = { version = "latest", os = ["macos"], strip_components = 0, minimum_release_age = "0s" }  # Space names, window grid, Hyper hotkeys, free RAM; see .okf/tools/spaces.md
 
 # Full install. Shared dotfiles and bootstrap entries are in conf.d/dotfiles.toml.
 [dotfiles]
@@ -108,32 +107,8 @@ dotnet = "10"
 "apt:terminator" = "latest"
 "apt:zip" = "latest"
 
-# yabai only names Spaces (layout float); SketchyBar shows the names at the
-# bottom of the screen. Both read ~/.config/{yabai,sketchybar}. launchd gives
-# agents no mise activation, so PATH lists the shims and ~/.local/bin.
-# yabai needs Accessibility permission, granted once by hand in System Settings
-# for ~/.local/share/mise/installs/github-asmvik-yabai/latest/bin/yabai.
-[bootstrap.macos.launchd.agents.yabai]
-program = "~/.local/share/mise/installs/github-asmvik-yabai/latest/bin/yabai"
-run_at_load = true
-keep_alive_on_failure = true
-throttle_interval = 30
-process_type = "Interactive"
-environment = { PATH = "{{ env.HOME }}/.local/bin:{{ env.HOME }}/.local/share/mise/shims:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin", LANG = "en_US.UTF-8" }
-stdout_path = "~/Library/Logs/yabai.log"
-stderr_path = "~/Library/Logs/yabai.err.log"
-
-[bootstrap.macos.launchd.agents.sketchybar]
-program = "/opt/homebrew/bin/sketchybar"
-run_at_load = true
-keep_alive_on_failure = true
-process_type = "Interactive"
-environment = { PATH = "{{ env.HOME }}/.local/bin:{{ env.HOME }}/.local/share/mise/shims:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin", LANG = "en_US.UTF-8" }
-stdout_path = "~/Library/Logs/sketchybar.log"
-stderr_path = "~/Library/Logs/sketchybar.err.log"
-
 # macOS preferences; apply with `mise bootstrap macos defaults apply`, then
-# `killall Dock`. Native edge tiling stays off: yabai and skhd place windows.
+# `killall Dock`. Native edge tiling stays off: Spaceward places windows.
 [bootstrap.settings.macos.dock]
 autohide = true
 autohide_delay = 0
@@ -150,7 +125,7 @@ initial_key_repeat = 15
 "com.apple.WindowManager" = { EnableTilingByEdgeDrag = false, EnableTopTilingByEdgeDrag = false, EnableTilingOptionAccelerator = false }
 
 [bootstrap.settings.macos.login_items]
-apps = ["/Applications/Stats.app", "/Applications/Thaw.app", "/Applications/Homerow.app"]
+apps = ["/Applications/Stats.app", "/Applications/Thaw.app", "/Applications/Homerow.app", "/Applications/Spaceward.app"]
 
 [bootstrap.repos]
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm" }
