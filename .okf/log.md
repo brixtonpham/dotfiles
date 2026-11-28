@@ -1,6 +1,7 @@
 # Update Log
 
 ## 2026-11-28
+* **Creation**: [macOS desktop setup](/tools/macos-desktop.md). Karabiner Hyper key (Caps Lock held; a tap still switches input source), skhd.zig hotkeys through `~/.local/bin/wm` (yabai grid, Space naming dialog, app launch), Thaw, Stats, Ghostty and Homerow casks, `[bootstrap.settings.macos]` preferences and login items. Magnet dropped. Runs: Thaw, Stats, Homerow, skhd and Karabiner's daemons; Magnet no longer runs.
 * **Creation**: [Space names (yabai + SketchyBar)](/tools/spaces.md). yabai (`github:asmvik/yabai`, layout float) holds Space labels; `~/.local/bin/space-name` stores names by Space UUID; SketchyBar (`brew:felixkratz/formulae/sketchybar`) shows them with front app, free RAM and time in a bottom bar. Both run as mise LaunchAgents. Runs: two LaunchAgents (yabai, sketchybar); SketchyBar polls `memory_pressure` every 15 s.
 
 ## 2026-11-19

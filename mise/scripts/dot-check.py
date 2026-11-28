@@ -29,7 +29,11 @@ def linked_sources():
             if not source.startswith(REPO_HOME):
                 continue
             rel = source[len(REPO_HOME):]
+            # symlink-each links each file; a plain symlink of a directory
+            # (such as ~/.config/karabiner) links everything inside it.
             if isinstance(entry, dict) and entry.get("mode") == "symlink-each":
+                dirs.add(rel)
+            elif os.path.isdir(os.path.join(REPO, "home", rel)):
                 dirs.add(rel)
             else:
                 files.add(rel)

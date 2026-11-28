@@ -37,6 +37,12 @@
 "~/.zshrc_minimal" = { source = "~/.dotfiles/home/.zshrc_minimal", mode = "symlink" }
 "~/terminator.vbs" = { source = "~/.dotfiles/home/terminator.vbs", mode = "symlink" }
 
+# Karabiner rewrites karabiner.json when it saves, which replaces a linked
+# file, so the whole directory is linked instead (Karabiner docs advise this).
+"~/.config/karabiner" = { source = "~/.dotfiles/home/karabiner", mode = "symlink" }
+# skhd.zig must be an .app in /Applications for Accessibility to stick.
+"/Applications/skhd.app" = { source = "~/.local/share/mise/installs/github-jackielii-skhd-zig/latest/skhd.app", mode = "symlink" }
+
 "~/.config/mise/conf.d/dotfiles.toml" = { source = "~/.dotfiles/mise/conf.d/dotfiles.toml", mode = "symlink" }
 
 # ~/.gitconfig is also written by `git config --global` and `gh auth
@@ -67,7 +73,12 @@ adopt = true
 "brew-cask:font-jetbrains-mono" = { os = "macos" }
 "brew-cask:spotify" = { os = "macos" }
 "brew-cask:visual-studio-code" = { os = "macos" }
-"brew:felixkratz/formulae/sketchybar" = { os = "macos" }  # space-name bar; started by the launchd agent in config.toml
+"brew:felixkratz/formulae/sketchybar" = { os = "macos" }
+"brew-cask:thaw" = { os = "macos" }                # menu bar manager; Ice is broken on macOS 26
+"brew-cask:stats" = { os = "macos" }               # memory pressure and swap in the menu bar
+"brew-cask:ghostty" = { os = "macos" }
+"brew-cask:homerow" = { os = "macos" }             # paid; keyboard hints to click anything
+"brew-cask:karabiner-elements" = { os = "macos" }  # pkg cask: needs sudo from a terminal  # space-name bar; started by the launchd agent in config.toml
 "apt:tmux" = "latest"
 "apt:vim" = "latest"
 "apt:git" = "latest"

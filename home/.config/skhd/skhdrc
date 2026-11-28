@@ -1,0 +1,23 @@
+# skhd.zig hotkeys. Hyper = Caps Lock held (Karabiner maps it to
+# cmd+alt+ctrl+shift); a Caps Lock tap keeps its usual job.
+# Commands go through ~/.local/bin/wm, which sets PATH for the service.
+
+# Windows: halves, quarters, maximize, center (yabai grid rows:cols:x:y:w:h)
+hyper - left   : ~/.local/bin/wm grid 1:2:0:0:1:1
+hyper - right  : ~/.local/bin/wm grid 1:2:1:0:1:1
+hyper - up     : ~/.local/bin/wm grid 2:1:0:0:1:1
+hyper - down   : ~/.local/bin/wm grid 2:1:0:1:1:1
+hyper - return : ~/.local/bin/wm grid 1:1:0:0:1:1
+hyper - c      : ~/.local/bin/wm grid 6:6:1:1:4:4
+hyper - u      : ~/.local/bin/wm grid 2:2:0:0:1:1
+hyper - i      : ~/.local/bin/wm grid 2:2:1:0:1:1
+hyper - j      : ~/.local/bin/wm grid 2:2:0:1:1:1
+hyper - k      : ~/.local/bin/wm grid 2:2:1:1:1:1
+
+# Spaces
+hyper - n      : ~/.local/bin/wm name
+
+# Apps
+hyper - t      : ~/.local/bin/wm app Ghostty
+hyper - b      : ~/.local/bin/wm app "Brave Browser"
+hyper - h      : ~/.local/bin/wm app Herdr

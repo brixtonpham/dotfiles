@@ -86,7 +86,8 @@ herdr = "latest"
 "npm:@elevenlabs/cli" = "1.9.0"
 "npm:firebase-tools" = "latest"
 dotnet = "10"
-"github:asmvik/yabai" = { version = "latest", os = ["macos"] }  # Space labels only (layout float); see .okf/tools/spaces.md
+"github:asmvik/yabai" = { version = "latest", os = ["macos"] }  # Space labels and window grid; see .okf/tools/spaces.md
+"github:jackielii/skhd.zig" = { version = "latest", os = ["macos"], strip_components = 0 }  # hotkeys (Hyper key); skhd itself has had no release since 2023
 
 # Full install. Shared dotfiles and bootstrap entries are in conf.d/dotfiles.toml.
 [dotfiles]
@@ -130,6 +131,26 @@ process_type = "Interactive"
 environment = { PATH = "{{ env.HOME }}/.local/bin:{{ env.HOME }}/.local/share/mise/shims:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin", LANG = "en_US.UTF-8" }
 stdout_path = "~/Library/Logs/sketchybar.log"
 stderr_path = "~/Library/Logs/sketchybar.err.log"
+
+# macOS preferences; apply with `mise bootstrap macos defaults apply`, then
+# `killall Dock`. Native edge tiling stays off: yabai and skhd place windows.
+[bootstrap.settings.macos.dock]
+autohide = true
+autohide_delay = 0
+autohide_time_modifier = 0.15
+mru_spaces = false   # keep Space order stable (space-name keys by UUID anyway)
+
+[bootstrap.settings.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+
+[bootstrap.settings.macos.defaults]
+"com.apple.dock" = { "expose-group-apps" = true }
+"NSGlobalDomain" = { NSAutomaticWindowAnimationsEnabled = false }
+"com.apple.WindowManager" = { EnableTilingByEdgeDrag = false, EnableTopTilingByEdgeDrag = false, EnableTilingOptionAccelerator = false }
+
+[bootstrap.settings.macos.login_items]
+apps = ["/Applications/Stats.app", "/Applications/Thaw.app", "/Applications/Homerow.app"]
 
 [bootstrap.repos]
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm" }

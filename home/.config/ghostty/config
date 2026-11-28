@@ -1,0 +1,8 @@
+# Ghostty: fast GPU terminal for agent panes. `ghostty +show-config --default --docs` lists every option.
+font-family = JetBrains Mono
+font-size = 13
+theme = Catppuccin Mocha
+macos-option-as-alt = true
+window-save-state = always
+copy-on-select = clipboard
+shell-integration-features = no-cursor,sudo,title
