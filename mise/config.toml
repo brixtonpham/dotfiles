@@ -87,6 +87,7 @@ herdr = "latest"
 "npm:firebase-tools" = "latest"
 dotnet = "10"
 "github:brixtonpham/spaceward" = { version = "latest", os = ["macos"], strip_components = 0, minimum_release_age = "0s" }  # Space names, window grid, Hyper hotkeys, free RAM; see .okf/tools/spaces.md
+"github:asmvik/yabai" = { version = "latest", os = ["macos"] }  # scripting addition only: Spaceward moves bsk windows with it; see .okf/tools/spaces.md
 
 # Full install. Shared dotfiles and bootstrap entries are in conf.d/dotfiles.toml.
 [dotfiles]
@@ -146,3 +147,17 @@ post-tools = [
 description = "Install or upgrade cua-driver with its own installer and register its MCP server"
 alias = "cua:update"
 run = "bash $HOME/.dotfiles/mise/scripts/cua-driver.sh"
+
+# yabai runs only to load its scripting addition into the Dock (layout float,
+# no tiling); Spaceward calls `yabai -m window --space`. Needs boot-arg
+# -arm64e_preview_abi, SIP off, Accessibility, and the sudoers entry written by
+# mise/scripts/yabai-sudoers.sh (rerun after each yabai upgrade).
+[bootstrap.macos.launchd.agents.yabai]
+program = "~/.local/share/mise/installs/github-asmvik-yabai/latest/bin/yabai"
+run_at_load = true
+keep_alive_on_failure = true
+throttle_interval = 30
+process_type = "Interactive"
+environment = { PATH = "{{ env.HOME }}/.local/bin:{{ env.HOME }}/.local/share/mise/shims:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin", LANG = "en_US.UTF-8" }
+stdout_path = "~/Library/Logs/yabai.log"
+stderr_path = "~/Library/Logs/yabai.err.log"
